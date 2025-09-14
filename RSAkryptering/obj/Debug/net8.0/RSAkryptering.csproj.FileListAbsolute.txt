@@ -1,0 +1,14 @@
+C:\Users\danie\OneDrive\Skrivbord\HobbyProjekt\RSAkryptering\RSAkryptering\bin\Debug\net8.0\RSAkryptering.exe
+C:\Users\danie\OneDrive\Skrivbord\HobbyProjekt\RSAkryptering\RSAkryptering\bin\Debug\net8.0\RSAkryptering.deps.json
+C:\Users\danie\OneDrive\Skrivbord\HobbyProjekt\RSAkryptering\RSAkryptering\bin\Debug\net8.0\RSAkryptering.runtimeconfig.json
+C:\Users\danie\OneDrive\Skrivbord\HobbyProjekt\RSAkryptering\RSAkryptering\bin\Debug\net8.0\RSAkryptering.dll
+C:\Users\danie\OneDrive\Skrivbord\HobbyProjekt\RSAkryptering\RSAkryptering\bin\Debug\net8.0\RSAkryptering.pdb
+C:\Users\danie\OneDrive\Skrivbord\HobbyProjekt\RSAkryptering\RSAkryptering\obj\Debug\net8.0\RSAkryptering.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\danie\OneDrive\Skrivbord\HobbyProjekt\RSAkryptering\RSAkryptering\obj\Debug\net8.0\RSAkryptering.AssemblyInfoInputs.cache
+C:\Users\danie\OneDrive\Skrivbord\HobbyProjekt\RSAkryptering\RSAkryptering\obj\Debug\net8.0\RSAkryptering.AssemblyInfo.cs
+C:\Users\danie\OneDrive\Skrivbord\HobbyProjekt\RSAkryptering\RSAkryptering\obj\Debug\net8.0\RSAkryptering.csproj.CoreCompileInputs.cache
+C:\Users\danie\OneDrive\Skrivbord\HobbyProjekt\RSAkryptering\RSAkryptering\obj\Debug\net8.0\RSAkryptering.dll
+C:\Users\danie\OneDrive\Skrivbord\HobbyProjekt\RSAkryptering\RSAkryptering\obj\Debug\net8.0\refint\RSAkryptering.dll
+C:\Users\danie\OneDrive\Skrivbord\HobbyProjekt\RSAkryptering\RSAkryptering\obj\Debug\net8.0\RSAkryptering.pdb
+C:\Users\danie\OneDrive\Skrivbord\HobbyProjekt\RSAkryptering\RSAkryptering\obj\Debug\net8.0\RSAkryptering.genruntimeconfig.cache
+C:\Users\danie\OneDrive\Skrivbord\HobbyProjekt\RSAkryptering\RSAkryptering\obj\Debug\net8.0\ref\RSAkryptering.dll
