@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("RSAkryptering")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+0f102e2e9b84fb583c357a1967708362801a9079")]
 [assembly: System.Reflection.AssemblyProductAttribute("RSAkryptering")]
 [assembly: System.Reflection.AssemblyTitleAttribute("RSAkryptering")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

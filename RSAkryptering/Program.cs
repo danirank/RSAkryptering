@@ -7,40 +7,6 @@ namespace RSAkryptering
     {
         static void Main(string[] args)
         {
-            Console.WriteLine(" Generera dina public nycklar genom att välja två primtal, talen kontrolleras genom fermats test");
-
-            Console.Write("Prime 1: ");
-            BigInteger prime1 = BigInteger.Parse(Console.ReadLine());
-           
-
-            while (!FermatsPrimtalstest(prime1))
-            {
-                Console.WriteLine();
-                Console.Write("Inget Primtal, försök igen: ");
-                prime1 = BigInteger.Parse(Console.ReadLine());
-            }
-            Console.Write("Prime 2: ");
-            BigInteger prime2 = BigInteger.Parse(Console.ReadLine());
-
-
-            while (!FermatsPrimtalstest(prime2))
-            {
-                Console.WriteLine();
-                Console.Write("Inget Primtal, försök igen: ");
-                prime2 = BigInteger.Parse(Console.ReadLine());
-            }
-
-
-            var publicKeys = GeneratePublicKeys(prime1,prime2);
-
-            var ( k,N) = publicKeys;
-
-            Console.WriteLine();
-
-            var d =  GenerateSecretKeyD(k, prime1,prime2);
-
-            string message = "Hire me";
-
             Dictionary<int, string> codeOfLetters = new Dictionary<int, string>
             {
                 [0] = " ",
@@ -66,21 +32,119 @@ namespace RSAkryptering
                 [21] = "T",
                 [22] = "U",
                 [23] = "V",
-                [24] ="W",
+                [24] = "W",
                 [25] = "X",
                 [26] = "Y",
                 [27] = "Z"
 
-                    
+
 
             };
+            var (k, N) = ((BigInteger)0, (BigInteger)0);    
+            bool runProgram = true;
+            BigInteger prime1 = 0;
+            BigInteger prime2 = 0;
+            var encryptedMeassage = new List<BigInteger>();
+            string messageToEncrypt = "";   
+            List<BigInteger> encryptedMessage = new List<BigInteger>();
+            bool gotKeys = false;
+            bool dGenerated = false;
+            BigInteger privatKey = 0;
+            List<string> decryptedMessage = new List<string>();
 
-            var encryptedMessage = EncryptMessage(codeOfLetters, k, N, message);
-            Console.WriteLine();
+            while (runProgram)
+            {
+                Console.WriteLine("[1] Genererate public keyes");
+                Console.WriteLine("[2] Genererate private key");
+                Console.WriteLine("[3] Encrypt message");
+                Console.WriteLine("[4] Decrypt message");
 
-            DecryptMessage(codeOfLetters, d, N, encryptedMessage);
+                string choice = Console.ReadLine();
+
+                switch (choice)
+                {
+                    case "1":
+
+                         prime1 = ChoosePrime();
+                         prime2 = ChoosePrime();
+                        var publicKeys = GeneratePublicKeys(prime1, prime2);
+                        (k, N) = publicKeys;
+                        gotKeys = true;
+                        break;
+
+                    case "2":
+                        if (!gotKeys)
+                        {
+                            Console.WriteLine("You need to generate public keys first");
+                            
+                            break;
+                        }
+                        privatKey = GenerateSecretKeyD(k, prime1, prime2);
+                        dGenerated = true;
+                        break;
+
+                    case "3":
+                        if (!gotKeys)
+                        {
+                            Console.WriteLine("You need to generate public keys first");
+                            break;
+                        }
+                        Console.Write("Enter message to encrypt (A-Z and space only): ");
+                        messageToEncrypt = Console.ReadLine();
+                        if (string.IsNullOrEmpty(messageToEncrypt))
+                        {
+                            Console.WriteLine("Message cannot be empty");
+                            break;
+                        }
+                        if (messageToEncrypt.Any(c => !char.IsLetter(c) && c != ' '))
+                        {
+                            Console.WriteLine("Message can only contain letters A-Z and spaces");
+                            break;
+                        }
+                        Console.WriteLine("Type in the recievers public keyes ([k,N])");
+                        Console.Write("k: ");
+                        k = BigInteger.Parse(Console.ReadLine());
+                        Console.Write("N: ");
+                        N = BigInteger.Parse(Console.ReadLine());
+                        encryptedMessage = EncryptMessage(codeOfLetters, k, N, messageToEncrypt);
+                        break;
+
+                        case "4":
+                        if (encryptedMessage.Count == 0)
+                        {
+                            Console.WriteLine("You need to encrypt a message first");
+                            break;
+                        }
+                        if (!dGenerated)
+                        {
+                            Console.WriteLine("You need to generate private key first");
+                            break;
+                        }
+                            decryptedMessage= DecryptMessage(codeOfLetters, privatKey, N, encryptedMessage);
+
+                        break;
+                        case "5":
+                            runProgram = false;
+                            break;
+                    default:
+                        break;
+                }
+
+            }
+
         }
-
+        public static BigInteger ChoosePrime()
+        {
+            Console.Write("Choose a prime number: ");
+            BigInteger prime = BigInteger.Parse(Console.ReadLine());
+            while (!FermatsPrimtalstest(prime))
+            {
+                Console.WriteLine();
+                Console.Write("Inget Primtal, försök igen: ");
+                prime = BigInteger.Parse(Console.ReadLine());
+            }
+            return prime;
+        }
         public static bool FermatsPrimtalstest(BigInteger p)
         {
 
@@ -132,7 +196,7 @@ namespace RSAkryptering
 
 
 
-            var N = GeneratePublicKeyN(p, q);
+            var N = p*q;
 
             var upperLimitforK = (p - 1) * (q - 1);
 
@@ -167,8 +231,8 @@ namespace RSAkryptering
                 }
 
                 BigInteger valtK = int.Parse(Console.ReadLine());
-            Console.WriteLine(  );
-                Console.WriteLine($"Public keys ([k,N]): [{valtK},{N}]\n");
+            
+                Console.WriteLine($"Public keys ([k,N]): [{valtK},{N}] - Give these to whomever you want to send encrypted messages to you\nPress any key to continue");
                 
             return (valtK,N);
 
@@ -178,22 +242,14 @@ namespace RSAkryptering
 
         }
 
-        public static BigInteger GeneratePublicKeyN(BigInteger p, BigInteger q)
-        {
-            
-            
-                BigInteger N = p * q;
-
-                return N;
-            
-
-        }
+        
+        
 
 
         public static BigInteger GenerateSecretKeyD(BigInteger k, BigInteger p, BigInteger q)
         {
             var phiN = (p-1) * (q-1);
-           
+            var N = p * q;
             List<BigInteger> validKeyes = new List<BigInteger>();
 
             BigInteger d = 1;
@@ -208,7 +264,8 @@ namespace RSAkryptering
                 d++;
 
             }
-
+            Console.WriteLine($"Private key: [d,n]: [{d},{N}]- Never give away your secret key.\npress any key to continue");
+            Console.ReadKey();
             return d; 
         }
 
@@ -228,7 +285,7 @@ namespace RSAkryptering
 
             }
 
-           // Console.WriteLine(message);
+           
 
            
             Console.WriteLine();
@@ -244,10 +301,10 @@ namespace RSAkryptering
 
                 if (C<10)
                 {
-                    Console.Write(C.ToString("D2") + ",");
+                    Console.Write(C.ToString("D2"));
                 }else
                 {
-                    Console.Write(C + ",");
+                    Console.Write(C);
 
                 }
                 

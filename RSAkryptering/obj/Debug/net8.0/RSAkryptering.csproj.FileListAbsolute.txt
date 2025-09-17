@@ -12,3 +12,4 @@ C:\Users\danie\OneDrive\Skrivbord\HobbyProjekt\RSAkryptering\RSAkryptering\obj\D
 C:\Users\danie\OneDrive\Skrivbord\HobbyProjekt\RSAkryptering\RSAkryptering\obj\Debug\net8.0\RSAkryptering.pdb
 C:\Users\danie\OneDrive\Skrivbord\HobbyProjekt\RSAkryptering\RSAkryptering\obj\Debug\net8.0\RSAkryptering.genruntimeconfig.cache
 C:\Users\danie\OneDrive\Skrivbord\HobbyProjekt\RSAkryptering\RSAkryptering\obj\Debug\net8.0\ref\RSAkryptering.dll
+C:\Users\danie\OneDrive\Skrivbord\HobbyProjekt\RSAkryptering\RSAkryptering\obj\Debug\net8.0\RSAkryptering.sourcelink.json
